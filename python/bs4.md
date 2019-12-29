@@ -2,9 +2,9 @@
 
 #### 1. 基本使用
 
-```
+```py
 import bs4 from BeautifulSoup
-//demo是html标签
+# demo是html标签
 soup=BeautifulSoup(demo,"html.parser")
 ```
 
