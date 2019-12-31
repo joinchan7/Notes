@@ -1,7 +1,39 @@
 ## Map 接口
 
-- 用来存储键值对(key)-(value)的对象
-- 常用实现类:HashMap,TreeMap,HashType,Properties
+- 用来存储键值对**key-value**的对象
+- 常用**实现类**:HashMap,TreeMap,HashType,Properties
+- HashMap 和 HashTable **区别**:
+  HashMap 线程不安全,效率高,允许 key 和 value 为 null
+  HashTable 线程安全,效率,不允许 key 和 value 为 null
+- **TreeMap 会自动按照 key 排序**
+  若 key 为自定义对象可对其实现 Comparable 接口,重写 compareTo 方法进行比较
+  **实例**:employee 作为 key 时,**通过 salary 和 id 排序**
+
+  ```java
+  class Emp implements Comparable<Emp> {
+    int id;
+    String name;
+    float salary;
+
+    public Emp(int id, String name, float salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    @Override
+    public int compareTo(@NotNull Emp o) {
+        // (this对象和order对象)负数:小于,正数:大于,0:等于
+        if (this.salary > o.salary) {
+            return 1;
+        } else if (this.salary < o.salary) {
+            return -1;
+        } else {
+            return Integer.compare(this.id, o.id);
+        }
+    }
+  }
+  ```
 
 ## HashMap 底层原理
 
