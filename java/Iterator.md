@@ -32,6 +32,7 @@
 - 遍历 Map
 
   - 方法一:转换为 entrySet 的遍历
+    entrySet**本质**是将 Map 中的`Key`和`Value`以`Key=value`的形式放入 Set 的`key`中
 
     ```java
         Map<Integer, String> map = new HashMap<>();
@@ -50,7 +51,7 @@
 
   - 方法二:转换为 key 的遍历
 
-  ```java
+    ```java
         Map<Integer, String> map = new HashMap<>();
         map.put(1, "aa");
         map.put(2, "bb");
@@ -63,7 +64,7 @@
             System.out.println(temp + "---" + map.get(temp));
         }
         //输出:1---23  2---44  7---vv
-  ```
+    ```
 
 ### 遍历方式总结
 
