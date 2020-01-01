@@ -1,5 +1,7 @@
 ## Collection 容器
 
+---
+
 ### Collection 和 Map 结构
 
 ![structure](img/structure.png)

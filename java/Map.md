@@ -1,5 +1,7 @@
 ## Map 接口
 
+---
+
 - 用来存储键值对**key-value**的对象
 - 常用**实现类**:HashMap,TreeMap,HashType,Properties
 - HashMap 和 HashTable **区别**:
