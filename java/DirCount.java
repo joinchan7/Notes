@@ -4,7 +4,7 @@ import java.util.Objects;
 /**
  * 面向对象
  * 统计给定目录下所有文件的大小(Byte)
- * 完善:实现不同File大小的统计
+ * 完善:实现对不同File的统计
  */
 public class DirCount {
     // 大小

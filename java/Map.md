@@ -11,31 +11,31 @@
   若 key 为自定义对象可对其实现 Comparable 接口,重写 compareTo 方法进行比较
   **实例**:employee 作为 key 时,**通过 salary 和 id 排序**
 
-  ```java
-  class Emp implements Comparable<Emp> {
-    int id;
-    String name;
-    float salary;
+```java
+class Emp implements Comparable<Emp> {
+int id;
+String name;
+float salary;
 
-    public Emp(int id, String name, float salary) {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
-    }
+public Emp(int id, String name, float salary) {
+    this.id = id;
+    this.name = name;
+    this.salary = salary;
+}
 
-    @Override
-    public int compareTo(@NotNull Emp o) {
-        // (this对象和order对象)负数:小于,正数:大于,0:等于
-        if (this.salary > o.salary) {
-            return 1;
-        } else if (this.salary < o.salary) {
-            return -1;
-        } else {
-            return Integer.compare(this.id, o.id);
-        }
+@Override
+public int compareTo(@NotNull Emp o) {
+    // (this对象和order对象)负数:小于,正数:大于,0:等于
+    if (this.salary > o.salary) {
+        return 1;
+    } else if (this.salary < o.salary) {
+        return -1;
+    } else {
+        return Integer.compare(this.id, o.id);
     }
-  }
-  ```
+}
+}
+```
 
 ## HashMap 底层原理
 

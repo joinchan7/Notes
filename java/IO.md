@@ -30,49 +30,52 @@
 
 1. 字符串拼接使用"/"或"separator"
 2. 基本操作:
-   ```java
-    if (null==src||!src.exists()) {
-              System.out.println("文件不存在");
-         } else {
-              if (src.isFile()) {
-                   System.out.println("文件操作");
-              } else {
-                   System.out.println("文件夹操作");
-              }
-         }
-   ```
+
+```java
+if (null==src||!src.exists()) {
+            System.out.println("文件不存在");
+        } else {
+            if (src.isFile()) {
+                System.out.println("文件操作");
+            } else {
+                System.out.println("文件夹操作");
+            }
+        }
+```
+
 3. createNewFile 创建文件
    con,com,com3 等操作系统关键字不能创建
 
-   ```java
-   File src = new File("IO_test/src/con");  //false
-   File src = new File("IO_test/src/con");  //false
-   ```
+```java
+File src = new File("IO_test/src/con");  //false
+File src = new File("IO_test/src/con");  //false
+```
 
 4. 创建文件夹
    - mkdir:父目录不存在,则创建失败
    - mkdirs:父目录不存在,则一同创建(推荐)
 5. 递归打印给定目录下**所有**子孙目录和文件名称
    思路:递归和循环
-   ```java
-   public static void printName(File src, int deep) {
-       // 控制层次
-       for (int i = 0; i < deep; i++) {
-           System.out.print("-");
-       }
-       // 打印名称
-       System.out.println(src.getName());
-       // 递归头:结束递归条件
-       if (null == src || !src.exists()) {
-           return;
-       } else if (src.isDirectory()) {
-           for (File f : Objects.requireNonNull(src.listFiles())) {
-               // 递归体:自己调用自己
-               printName(f, deep + 1);
-           }
-       }
-   }
-   ```
+
+```java
+public static void printName(File src, int deep) {
+    // 控制层次
+    for (int i = 0; i < deep; i++) {
+        System.out.print("-");
+    }
+    // 打印名称
+    System.out.println(src.getName());
+    // 递归头:结束递归条件
+    if (null == src || !src.exists()) {
+        return;
+    } else if (src.isDirectory()) {
+        for (File f : Objects.requireNonNull(src.listFiles())) {
+            // 递归体:自己调用自己
+            printName(f, deep + 1);
+        }
+    }
+}
+```
 
 ### 查文档的一些说明
 
