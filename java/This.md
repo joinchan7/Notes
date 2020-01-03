@@ -67,7 +67,7 @@ class Person {
 
 ### 在类内部,代表自身对象
 
-- 在一个类的内部，也可以使用 this 代表自身类的对象，或者换句话说，每个类内部都有一个隐含的成员变量，该成员变量的类型是该类的类型，该成员变量的名称是 this，实际使用 this 代表自身类的对象的示例代码如下：
+- 在一个类的内部，也可以使用 this 代表自身类的对象，或者换句话说，每个类内部都有一个隐含的成员变量，**该成员变量的类型是该类的类型**，该成员变量的**名称是 this**，实际使用 this 代表自身类的对象的示例代码如下：
 
 ```java
 // 使用this代表自身类的对象
@@ -79,7 +79,13 @@ public class ReferenceObject {
     }
 
     public void test() {
-        System.out.println(this);
+        System.out.println(this.getClass());
+    }
+
+    public static void main(String[] args) {
+        ReferenceObject referenceObject=new ReferenceObject();
+        // 输出class ReferenceObject
+        referenceObject.test();
     }
 }
 // 在构造方法内部，将对象this的值赋值给instance，在test方法内部，输出对象this的内容，这里的this都代表自身类型的对象。
