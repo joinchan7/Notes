@@ -13,27 +13,27 @@
 
 ```java
 class Emp implements Comparable<Emp> {
-int id;
-String name;
-float salary;
+    int id;
+    String name;
+    float salary;
 
-public Emp(int id, String name, float salary) {
-    this.id = id;
-    this.name = name;
-    this.salary = salary;
-}
-
-@Override
-public int compareTo(@NotNull Emp o) {
-    // (this对象和order对象)负数:小于,正数:大于,0:等于
-    if (this.salary > o.salary) {
-        return 1;
-    } else if (this.salary < o.salary) {
-        return -1;
-    } else {
-        return Integer.compare(this.id, o.id);
+    public Emp(int id, String name, float salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
     }
-}
+
+    @Override
+    public int compareTo(@NotNull Emp o) {
+        // (this对象和order对象)负数:小于,正数:大于,0:等于
+        if (this.salary > o.salary) {
+            return 1;
+        } else if (this.salary < o.salary) {
+            return -1;
+        } else {
+            return Integer.compare(this.id, o.id);
+        }
+    }
 }
 ```
 
