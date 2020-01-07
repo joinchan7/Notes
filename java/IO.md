@@ -100,3 +100,4 @@ public static void printName(File src, int deep) {
 2. 选择流
 3. 操作(读,写)
 4. 释放系统资源
+   > 流的关闭:先开启的后关闭
