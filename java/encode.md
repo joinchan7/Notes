@@ -14,3 +14,5 @@ byte[] data = msg.getBytes();
 byte[] data = new byte[10];
 String msg = new byte(data, 0, data.length);
 ```
+
+> ps:使用 FileReader 和 FileWriter 避免不同字符集的差异

@@ -28,7 +28,7 @@ public class Copy {
                 os.write(flush, 0, len);    // 分段写入
                 len = is.read(flush);
             }
-
+            os.flush();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
