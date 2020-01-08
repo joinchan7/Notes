@@ -1,7 +1,7 @@
 /**
  * 操作IO流标准步骤(字节)
  */
-public class IOTest2 {
+public class ioOperate {
     public static void main(String[] args) {
         // 创建源
         File src = new File("IO_test/src/com/chan/abc.txt");
