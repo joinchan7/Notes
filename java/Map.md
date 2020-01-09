@@ -4,7 +4,7 @@
 
 - 用来存储键值对**key-value**的对象
 - 常用**实现类**:HashMap,TreeMap,HashType,Properties
-- HashMap 和 HashTable **区别**:
+- **HashMap** 和 **HashTable** **区别**:
   HashMap 线程不安全,效率高,允许 key 和 value 为 null
   HashTable 线程安全,效率,不允许 key 和 value 为 null
 - **TreeMap 会自动按照 key 排序**

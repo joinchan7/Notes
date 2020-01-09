@@ -12,7 +12,7 @@
 > BufferedInputStream&BufferedOutputStream
 > (默认 8k)
 
-1. 提升性能
+1. **提升性能(一般建议都加上)**
 2. 最底层一定是节点流
 3. 释放资源时,只需释放最外层(内部会从里到外依次释放)
 
@@ -43,3 +43,48 @@ BufferedWriter bw = new BufferedWriter(new FileWriter(dest));
 
 1. 字符流与字节流的桥梁,处理文本更方便
 2. 可以指定字符集编码,解码
+
+### 数据流
+
+> DataOutputStream&DataInputStream
+
+1. 先写出后读取
+2. 读取顺序必须和写出顺序保持一致
+
+### 对象流
+
+> ObjectInputStream&ObjectOutputStream
+> input: (反序列化 deserialization)
+> output: (序列化 serialization)
+> 序列化又叫持久化
+
+1. 先写出后读取
+2. 读取顺序必须和写出顺序保持一致
+3. 不是所有对象都要序列化(通行证 实现 Serializable 接口才能序列化)
+
+**ps**:类型转换: `if(obj instanceof Class)`
+
+```java
+// 使用if(obj instanceof Class)防止发生错误
+if (employee instanceof Emp) {
+    Emp empObj = (Emp) employee;
+    System.out.println(empObj.getName() + "==>" + empObj.getSalary());
+}
+```
+
+### 打印流
+
+> PrintStream&PrintWriter
+
+1. System.out 也是 PrintStream 流的对象
+2. 重定向 PrintStream 输出端
+
+```java
+// 重定向输出端,参数为打印流PrintStream的对象,true:自动刷新
+System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("IO_test/src/com/chan/ps.txt")), true);
+);
+System.out.println(10);
+// 重定向回控制台
+System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(FileDescriptor.out)), true));
+System.out.println("back");
+```
