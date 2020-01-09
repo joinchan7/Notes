@@ -80,11 +80,11 @@ if (employee instanceof Emp) {
 2. 重定向 PrintStream 输出端
 
 ```java
-// 重定向输出端,参数为打印流PrintStream的对象,true:自动刷新
+// 重定向输出端,参数为打印流 PrintStream 的对象, true:自动刷新
 System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("IO_test/src/com/chan/ps.txt")), true);
 );
 System.out.println(10);
-// 重定向回控制台
+// 重定向回控制台 FileDescriptor.out
 System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(FileDescriptor.out)), true));
 System.out.println("back");
 ```
