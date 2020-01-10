@@ -1,12 +1,15 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+package com.chan.io3;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 /**
- * 将指定文件分成n块,并存入指定文件夹中
  * 面向对象思想封装
+ * <p>
+ * split:将指定文件分成n块,并存入指定文件夹中
+ * merge:将分开的文件进行合并
  */
 public class SplitFile {
     // 源头
@@ -24,8 +27,8 @@ public class SplitFile {
         this.src = new File(srcPath);
         this.destDir = destDir;
         this.blockSize = blockSize;
-        this.destPaths = new ArrayList<String>();
 
+        this.destPaths = new ArrayList<>();
         init();
     }
 
@@ -37,7 +40,7 @@ public class SplitFile {
     // 初始化
     private void init() {
         // 总长度
-        long len = this.src.length();
+        long len = src.length();
         // 分几块
         this.size = (int) Math.ceil(len * 1.0 / blockSize);
         for (int i = 0; i < size; i++) {
@@ -46,16 +49,13 @@ public class SplitFile {
     }
 
     public void split() throws IOException {
-        // 不能再使用这个src啦!!!
-        // File src = new File("IO_test/src/com/chan/io3/Copy.java");
         // 总长度
         long len = src.length();
-
         int beginPos;
+        // 当前块的实际大小
         int actualSize;
         for (int i = 0; i < size; i++) {
             beginPos = i * blockSize;
-
             if (i == size - 1) {
                 // 如果是最后一块,使用剩余量
                 actualSize = (int) len;
@@ -70,6 +70,30 @@ public class SplitFile {
         }
     }
 
+    /**
+     * 文件合并
+     */
+    public void merge(String destPath) throws IOException {
+        OutputStream os = new BufferedOutputStream(new FileOutputStream(destPath, true));
+        Vector<InputStream> iv = new Vector<>();
+        SequenceInputStream sis;
+        for (String path : destPaths) {
+            iv.add(new BufferedInputStream(new FileInputStream(path)));
+        }
+        sis = new SequenceInputStream(iv.elements());
+
+        byte[] flush = new byte[1024];
+        int len = sis.read(flush);
+        while (len != -1) {
+            os.write(flush, 0, len);
+            len = sis.read(flush);
+        }
+
+        os.flush();
+        os.close();
+        sis.close();
+    }
+
     public static void main(String[] args) throws IOException {
         SplitFile sf = new SplitFile("IO_test/src/com/chan/linux.png",
                 "IO_test/src/com/chan/io3/dest",
@@ -79,10 +103,12 @@ public class SplitFile {
 
         sf.split();
         sf2.split();
+
+        sf.merge("IO_test/src/com/chan/merge.png");
     }
 
     /**
-     * 指定第几块的起始位置和实际长度
+     * 指定第几块的起始位置和实际长度,进行分割
      *
      * @param i          第几块
      * @param beginPos   起始位置
@@ -92,19 +118,17 @@ public class SplitFile {
     private void splitDetail(int i, int beginPos, int actualSize) throws IOException {
         RandomAccessFile raf = new RandomAccessFile(this.src, "r");
         RandomAccessFile raf2 = new RandomAccessFile(this.destPaths.get(i), "rw");
-        // 起始位置
-        // 需要获取的实际大小
 
         raf.seek(beginPos);
 
         byte[] flush = new byte[1024];
         int len = raf.read(flush);
         while (len != -1) {
-            // 获取本次读取所有数据
+            // 如果当前块实际长度>缓存区长度,获取本次读取所有数据
             if (actualSize > len) {
                 raf2.write(flush, 0, len);
                 actualSize -= len;
-                // 获取实际大小
+                // 如果当前块实际长度>缓存区长度,获取实际长度
             } else {
                 raf2.write(flush, 0, actualSize);
                 break;

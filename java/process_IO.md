@@ -88,3 +88,29 @@ System.out.println(10);
 System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream(FileDescriptor.out)), true));
 System.out.println("back");
 ```
+
+### 随机读取和写入流
+
+> RandomAccessFile( ,"r")&RandomAccessFile( ,"rw")
+
+```java
+// raf是 RandomAccessFile 的一个实例对象
+raf.seek(2);
+// 指定起始位置,读取剩余所有内容(r模式)
+```
+
+### 序列流
+
+> SequenceInputStream&SequenceOutputStream
+
+- 用于批量处理流
+- 通常与 Vevtor 一起使用
+
+```java
+Vector<InputStream> iv = new Vector<>();
+SequenceInputStream sis;
+for (String path : destPaths) {
+    iv.add(new BufferedInputStream(new FileInputStream(path)));
+}
+sis = new SequenceInputStream(iv.elements());
+```
