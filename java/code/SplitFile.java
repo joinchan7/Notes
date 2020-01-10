@@ -29,6 +29,11 @@ public class SplitFile {
         init();
     }
 
+    // 构造器可以相互调用和重载
+    public SplitFile(String srcPath, String destDir) {
+        this(srcPath, destDir, 1024);
+    }
+
     // 初始化
     private void init() {
         // 总长度
@@ -68,8 +73,12 @@ public class SplitFile {
     public static void main(String[] args) throws IOException {
         SplitFile sf = new SplitFile("IO_test/src/com/chan/linux.png",
                 "IO_test/src/com/chan/io3/dest",
-                1025);
+                1026);
+        SplitFile sf2 = new SplitFile("IO_test/src/com/chan/baiDu.html",
+                "IO_test/src/com/chan/io3/dest");
+
         sf.split();
+        sf2.split();
     }
 
     /**
