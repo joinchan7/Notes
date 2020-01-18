@@ -60,9 +60,11 @@ BufferedWriter bw = new BufferedWriter(new FileWriter(dest));
 
 1. 先写出后读取
 2. 读取顺序必须和写出顺序保持一致
-3. 不是所有对象都要序列化(通行证 实现 Serializable 接口才能序列化)
-
-**ps**:类型转换: `if(obj instanceof Class)`
+3. 不是所有对象**都能**序列化 (通行证 实现 **Serializable** 接口才能序列化)
+   不是所有对象**都要**序列化(transient:透明)
+   `java // transient ==> 指:该数据不需要序列化`
+   `private transient String name;`
+   **ps**:类型转换: `if(obj instanceof Class)`
 
 ```java
 // 使用if(obj instanceof Class)防止发生错误
