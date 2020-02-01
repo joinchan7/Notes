@@ -24,7 +24,7 @@ InputStream is = new BufferedInputStream(new FileInputStream(src));
 
 ### 字符缓冲流
 
-> BufferedReade&BufferedWriter
+> BufferedReader&BufferedWriter
 
 1. 要使用新方法`readLine()`和`nextLine()`,不能发生多态
 2. 读取**下一行:**`String line = br.readLine()`
