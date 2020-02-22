@@ -28,3 +28,9 @@
   1. 正数:长久存储,存储时间为数值大小
   2. 负数:默认值,关闭浏览器自动删除
   3. 0:直接删除该 cookie
+
+### MVC(Model View Controller)
+
+1. Model:完成业务操作,如:查询数据库,封装 JavaBean 对象
+2. View:展示数据
+3. Controller:获取用户参数,调用模型,将数据交给 View 展示
