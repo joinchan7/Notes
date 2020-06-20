@@ -1,3 +1,4 @@
-CSS Selector 用法
+### 爬虫中解析 html
 
-<HTML>.css('a::attr(href)').extract()
+- CSS Selector 用法
+  `<HTML>.css('a::attr(href)').extract()`
